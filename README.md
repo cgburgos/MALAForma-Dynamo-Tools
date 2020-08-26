@@ -1,3 +1,5 @@
+#MALAForma Dynamo Tools MOBIL
+
 Bienvenides al repositorio de herramientas MALAForma para Dynamo.
 En este espacio encontraran las ultimas versiones de cada una de las rutinas, los Totoriales asociados y podran reportar los errores.
 Ademas se iran agregando las definiciones para Dynamo que sean necesarias segun caso a caso.
@@ -9,6 +11,7 @@ Cualquier duda me pueden escribir a cristobal@rawlab.cl o cburgos@mobilarquitect
 Saludos,
 Toto.
 
+---
 Version 1.0.0.0 |260820
 Se agregan las siguientes betas de las rutinas:
 -PARK_ContadorEstacionamientos.dyn
