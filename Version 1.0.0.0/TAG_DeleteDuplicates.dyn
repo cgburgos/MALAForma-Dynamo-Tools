@@ -1,0 +1,308 @@
+{
+  "Uuid": "9459303f-5eed-488c-8996-9578da293f49",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "TAG_DeleteDuplicates",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [
+    {
+      "Id": "a6a6f7f55d7e49bf8b5b141bdfa3398d",
+      "Name": "Deleted Tags",
+      "Type": "unknown",
+      "InitialValue": "",
+      "Description": "Visualize the output of node."
+    }
+  ],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Application.Document.ActiveView",
+      "Id": "6dafdf58879d4e32a64c5c610762204b",
+      "Inputs": [
+        {
+          "Id": "663e3d2993e24c09ab477fa7169ca1c9",
+          "Name": "document",
+          "Description": "Revit.Application.Document",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "dd830845eab0413a843c31a33a365d33",
+          "Name": "View",
+          "Description": "View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get the active view for the document\n\nDocument.ActiveView: View"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Application.Document.Current",
+      "Id": "45a7c780e1d04a3e8bedf78453b84d82",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "63e2ca071332414fb70ad922b85fcdea",
+          "Name": "Document",
+          "Description": "Document",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get the current document\n\nDocument.Current: Document"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfCategoryInView, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "Id": "4afa809cb7124387a65a2aa66e9bf3a4",
+      "Inputs": [
+        {
+          "Id": "c868ade5379846839f3d6dc7e311da9a",
+          "Name": "Category",
+          "Description": "The Category",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d9f7c1da2e5d48b4b735a557be905762",
+          "Name": "View",
+          "Description": "The View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "eb0af7cc4fd547cb815502b95aed626f",
+          "Name": "Elements",
+          "Description": "An element type.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Get all elements of the specified category in the specified view from the model."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "a6a6f7f55d7e49bf8b5b141bdfa3398d",
+      "Inputs": [
+        {
+          "Id": "87d48bb14d36412880489507620cf940",
+          "Name": "",
+          "Description": "Node to evaluate.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a51223834fb643208694e7381b91f5c5",
+          "Name": "",
+          "Description": "Watch contents.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualize the output of node."
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "import clr\r\nimport sys\r\n\r\nclr.AddReference(\"System\")\r\nfrom System.Collections.Generic import *\r\n\r\nclr.AddReference(\"DSCoreNodes\")\r\nimport DSCore\r\nfrom DSCore import *\r\n\r\n#Import RevitAPI\r\nclr.AddReference('RevitAPI')\r\nfrom Autodesk.Revit.DB import *\r\n\r\n#Import RevitAPIUI\r\nclr.AddReference(\"RevitAPIUI\")\r\nfrom Autodesk.Revit.UI import *\r\nfrom Autodesk.Revit.UI.Selection import *\r\n\r\n#Import DocumentManager and TransactionManager\r\nclr.AddReference(\"RevitServices\")\r\nimport RevitServices\r\nfrom RevitServices.Persistence import DocumentManager\r\nfrom RevitServices.Transactions import TransactionManager\r\n\r\n#Import Dynamo Python References\r\nclr.AddReference(\"ProtoGeometry\")\r\nfrom Autodesk.DesignScript.Geometry import *\r\n\r\n#Import RevitNodes\r\nclr.AddReference(\"RevitNodes\")\r\nimport Revit\r\n\r\nclr.ImportExtensions(Revit.Elements)\r\nclr.ImportExtensions(Revit.GeometryConversion)\r\n\r\n\r\ndoc = DocumentManager.Instance.CurrentDBDocument\r\nuidoc = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument\r\n\r\n#Start coding from here:\r\ntagList = UnwrapElement(IN[0])\r\nhostList = []\r\ndupList = []\r\nbaseList = []\r\n\r\ntagCategory = tagList[0].Category.Name\r\n\r\nif tagCategory == \"Room Tags\":\r\n\tTransactionManager.Instance.EnsureInTransaction(doc)\r\n\tfor i in tagList:\r\n\t\thostId = i.Room.Id\r\n\t\thostList.append(hostId)\r\n\t\tif hostId not in baseList:\r\n\t\t\tbaseList.append(hostId)\r\n\t\telse:\r\n\t\t\tdupList.append(\"Tag: \"+i.TagText)\r\n\t\t\tdoc.Delete(i.Id)\r\n\tTransactionManager.Instance.TransactionTaskDone()\r\n\r\nif tagCategory == \"Area Tags\":\r\n\tTransactionManager.Instance.EnsureInTransaction(doc)\r\n\tfor i in tagList:\r\n\t\thostId = i.Area.Id\r\n\t\thostList.append(hostId)\r\n\t\tif hostId not in baseList:\r\n\t\t\tbaseList.append(hostId)\r\n\t\telse:\r\n\t\t\tdupList.append(\"Tag: \"+i.TagText)\r\n\t\t\tdoc.Delete(i.Id)\r\n\tTransactionManager.Instance.TransactionTaskDone()\r\n\r\nelse:\r\n\tTransactionManager.Instance.EnsureInTransaction(doc)\r\n\tfor i in tagList:\r\n\t\thostId = i.GetTaggedLocalElement().Id\r\n\t\thostList.append(hostId)\r\n\t\tif hostId not in baseList:\r\n\t\t\tbaseList.append(hostId)\r\n\t\telse:\r\n\t\t\tdupList.append(\"Tag: \"+i.TagText)\r\n\t\t\tdoc.Delete(i.Id)\r\n\tTransactionManager.Instance.TransactionTaskDone()\r\n\r\nTaskDialog.Show(\"Delete Duplicates\", str(len(dupList))+\" elements were deleted from the view\")\r\n\r\nOUT = dupList\r\n",
+      "VariableInputPorts": true,
+      "Id": "44bf7e59fb0843bdb7ccc120aa52612a",
+      "Inputs": [
+        {
+          "Id": "c3e95e96b76241158717f058dd1320fc",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e98b1f72fdc6444685081a9dc6b5dd25",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded IronPython script."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
+      "SelectedIndex": -1,
+      "SelectedString": "",
+      "NodeType": "ExtensionNode",
+      "Id": "3e08686ce29341db9d9b6f2a8ef531b0",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "3c5a1642f71b43d2ab955da5c844ab8f",
+          "Name": "Category",
+          "Description": "The selected Category.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All built-in categories."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "dd830845eab0413a843c31a33a365d33",
+      "End": "d9f7c1da2e5d48b4b735a557be905762",
+      "Id": "ea9c373248004636b8a3347004963035"
+    },
+    {
+      "Start": "63e2ca071332414fb70ad922b85fcdea",
+      "End": "663e3d2993e24c09ab477fa7169ca1c9",
+      "Id": "bdbafba514424413ac5f45894fff5fcd"
+    },
+    {
+      "Start": "eb0af7cc4fd547cb815502b95aed626f",
+      "End": "c3e95e96b76241158717f058dd1320fc",
+      "Id": "512e01422df448bb830601fe62b28fc1"
+    },
+    {
+      "Start": "e98b1f72fdc6444685081a9dc6b5dd25",
+      "End": "87d48bb14d36412880489507620cf940",
+      "Id": "5c35dee16b06473491739e56caaef78d"
+    },
+    {
+      "Start": "3c5a1642f71b43d2ab955da5c844ab8f",
+      "End": "c868ade5379846839f3d6dc7e311da9a",
+      "Id": "0c376dbbaa034f6f8822a209a9e5d0b4"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.3.0.5885",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Document.ActiveView",
+        "Id": "6dafdf58879d4e32a64c5c610762204b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 425.0,
+        "Y": 410.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Document.Current",
+        "Id": "45a7c780e1d04a3e8bedf78453b84d82",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 248.0,
+        "Y": 401.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "All Elements of Category in View",
+        "Id": "4afa809cb7124387a65a2aa66e9bf3a4",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 716.70252222185127,
+        "Y": 319.29390587931061
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Deleted Tags",
+        "Id": "a6a6f7f55d7e49bf8b5b141bdfa3398d",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": true,
+        "Excluded": false,
+        "X": 1439.1673501868217,
+        "Y": 254.25308763494019
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Python Script",
+        "Id": "44bf7e59fb0843bdb7ccc120aa52612a",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 978.18501499805757,
+        "Y": 325.75275535683522
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Categories",
+        "Id": "3e08686ce29341db9d9b6f2a8ef531b0",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 195.65373198160989,
+        "Y": 159.93056735353207
+      }
+    ],
+    "Annotations": [],
+    "X": 3.9540497160149641,
+    "Y": 111.1589776174043,
+    "Zoom": 0.70556257161994962
+  }
+}
