@@ -12,7 +12,7 @@ Saludos,
 Toto.
 
 ---
-Version 1.0.0.0 |260820
+{Version 1.0.0.0 |260820}
 Se agregan las siguientes betas de las rutinas:
 -PARK_ContadorEstacionamientos.dyn
 -PARK_EnumeradorEstacionamientos.dyn
