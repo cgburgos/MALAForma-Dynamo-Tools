@@ -14,7 +14,8 @@ Toto.
 ---
 
 ## NOTAS:
--Para conectar Dynamo Player con la ruta del servidor, donde estaran publicadas las ultimas versiones, pueden hacer click en el siguiente [link](https://www.youtube.com/watch?v=xd5Z_ojc0-s).
+-Para conectar Dynamo Player con la ruta del servidor, donde estaran publicadas las ultimas versiones, pueden hacer click en el siguiente [link](https://www.youtube.com/watch?v=xd5Z_ojc0-s).\
+-Los Totoriales de cada version (que esten disponibles) se encuentran vinculados en cada uno de los archivos.
 
 ---
 
@@ -22,11 +23,11 @@ Toto.
 
 Se agregan las siguientes betas de las rutinas:\
 -PARK_ContadorEstacionamientos.dyn\
--PARK_EnumeradorEstacionamientos.dyn\
+-[PARK_EnumeradorEstacionamientos.dyn](https://www.youtube.com/watch?v=FqwQMZ-zFVw)\
 -PARK_TandemViewer.dyn\
 -SHEET_DataLink.dyn\
 -SHEET_RenumberBySeries.dyn\
--SLAB_SingleProjector.dyn\
+-[SLAB_SingleProjector.dyn](https://www.youtube.com/watch?v=P298q_Mi5Ms)\
 -TAG_DeleteDuplicates.dyn\
--WALLS_PasosBuque.dyn
+-[WALLS_PasosBuque.dyn](https://www.youtube.com/watch?v=tTJuIXXZeYA)
 
