@@ -13,7 +13,12 @@ Toto.
 
 ---
 
-## Version 1.0.0.0 |260820
+## NOTAS:
+-Para conectar Dynamo Player con la ruta del servidor, donde estaran publicadas las ultimas versiones, pueden hacer click en el siguiente [link](https://www.youtube.com/watch?v=xd5Z_ojc0-s).
+
+---
+
+## [Version 1.0.0.0 | 260820](https://github.com/cgburgos/MALAForma-Dynamo-Tools/tree/master/Version%201.0.0.0)
 
 Se agregan las siguientes betas de las rutinas:\
 -PARK_ContadorEstacionamientos.dyn\
@@ -24,3 +29,4 @@ Se agregan las siguientes betas de las rutinas:\
 -SLAB_SingleProjector.dyn\
 -TAG_DeleteDuplicates.dyn\
 -WALLS_PasosBuque.dyn
+
