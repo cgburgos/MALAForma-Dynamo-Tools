@@ -15,7 +15,8 @@ Toto.
 
 ## NOTAS:
 -Para conectar Dynamo Player con la ruta del servidor, donde estaran publicadas las ultimas versiones, pueden hacer click en el siguiente [link](https://www.youtube.com/watch?v=xd5Z_ojc0-s).\
--Los Totoriales de cada version (que esten disponibles) se encuentran vinculados en cada uno de los archivos.
+-Los Totoriales de cada version (que esten disponibles) se encuentran vinculados en cada uno de los archivos.\
+-Para generar reportes de bugs y hacer solicitudes en la plataforma GitHub, puede hacer click en el siguiente [link](https://youtu.be/PXIRLPc-BMo)
 
 ---
 
