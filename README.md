@@ -7,7 +7,7 @@ Ademas se iran agregando las definiciones para Dynamo que sean necesarias segun 
 Las versiones para Dynamo player se encuentran en la siguiente ruta:
 BIM360\MOBIL_DATA\Project Files\00_HERRAMIENTAS\00_REVIT\00_DYNAMO PLAYER
 
-Cualquier duda me pueden escribir a cristobal@rawlab.cl o cburgos@mobilarquitectos.cl\
+Cualquier duda me pueden escribir a cristobal@malaforma.cl o cburgos@mobilarquitectos.cl\
 Saludos,\
 Toto.
 
