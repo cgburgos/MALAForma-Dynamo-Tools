@@ -27,7 +27,7 @@ Por ejemplo el archivo TER_PAI_L3_CD-Sheet - PA-PLA-3101 - BAR Y JUEGOS L03_TRAZ
 Para utilizarla solo hay que abrir el .exe y luego esperar un par de segundos hasta que pida elegir la carpeta donde estan los archivos. 
 Una vez seleccionada, el programa renombrara todos los archivos al interior de la carpeta que contengan Sheet.
 
-Para descargarla haz click [aqui] (https://github.com/cgburgos/MALAForma-Dynamo-Tools/raw/master/RvtSheetExportNameCleaner%20-%20MALAForma%20Suite.exe)
+Para descargarla haz click [aqui](https://github.com/cgburgos/MALAForma-Dynamo-Tools/raw/master/RvtSheetExportNameCleaner%20-%20MALAForma%20Suite.exe)
 
 ---
 
