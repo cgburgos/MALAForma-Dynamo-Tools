@@ -19,7 +19,7 @@ Toto.
 -Para generar reportes de bugs y hacer solicitudes en la plataforma GitHub, puede hacer click en el siguiente [link](https://youtu.be/PXIRLPc-BMo)
 
 ---
-##[RvtSheetExportNameCleaner](https://github.com/cgburgos/MALAForma-Dynamo-Tools/raw/master/RvtSheetExportNameCleaner%20-%20MALAForma%20Suite.exe)
+## [RvtSheetExportNameCleaner](https://github.com/cgburgos/MALAForma-Dynamo-Tools/raw/master/RvtSheetExportNameCleaner%20-%20MALAForma%20Suite.exe)
 
 La herramienta RvtSheetExportNameCleaner renombra todos los archivos de las exportaciones AUTOMATIC (LONG NAME) de Revit, eliminando el Nombre del archivo + Sheet, dejando solo el nombre de las laminas. 
 Por ejemplo el archivo TER_PAI_L3_CD-Sheet - PA-PLA-3101 - BAR Y JUEGOS L03_TRAZADOS pasaria a llamarse solo PA-PLA-3101 - BAR Y JUEGOS L03_TRAZADOS.
